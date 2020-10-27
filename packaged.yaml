@@ -1,0 +1,32 @@
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: ruby2.5
+      Timeout: 180
+      Handler: cloudtrail/handler.handler
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: SimpleTable
+      CodeUri: s3://av-core-domain-cfn-leaprog-trail-lambdabucket-1p6o6k7u9b28p/82e81a8f96b630b9d38dc6b6a68dae0e
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: SimpleTable
+      Events:
+        CloudTrailEvent:
+          Type: CloudWatchLogs
+          Properties:
+            LogGroupName: av-core-domain-cfn-leaprog
+            FilterPattern: '{$.userIdentity.type = AssumedRole}'
+  SimpleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: av-core-domain-cfn-leaprog-events
+      PrimaryKey:
+        Name: RoleArn
+        Type: String
+      SSESpecification:
+        SSEEnabled: true

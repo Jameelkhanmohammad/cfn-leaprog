@@ -1,0 +1,4 @@
+stacks:
+  us-east-1:
+    av-core-domain-cfn-leaprog-trail:
+      template: cloudtrail.template.yml

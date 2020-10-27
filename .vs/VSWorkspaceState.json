@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\lib",
+    "\\lib\\cfn-leaprog",
+    "\\lib\\cfn-leaprog\\cloudtrail",
+    "\\templates"
+  ],
+  "SelectedNode": "\\templates\\cloudtrail.template.yml",
+  "PreviewInSolutionExplorer": false
+}
